@@ -10,3 +10,13 @@ instance Show ASTree where
     show (Mul e1 e2) = show e1 ++ " * " ++ show e2
     show (Div e1 e2) = show e1 ++ " / " ++ show e2
     show (Value n)   = show n
+
+buildExpr :: ASTree -> String -> ASTree -> ASTree
+buildExpr a "+" b = Add a b
+buildExpr a "-" b = Sub a b
+buildExpr a "*" b = Mul a b
+buildExpr a "/" b = Div a b
+
+mapValues :: [String] -> [ASTree]
+mapValues [] = []
+mapValues (x:xs) = Value (read x) : mapValues xs
