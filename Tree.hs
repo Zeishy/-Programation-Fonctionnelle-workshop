@@ -20,3 +20,7 @@ buildExpr a "/" b = Div a b
 mapValues :: [String] -> [ASTree]
 mapValues [] = []
 mapValues (x:xs) = Value (read x) : mapValues xs
+
+buildAST :: ([String], [String]) -> ASTree
+buildAST ([], [val]) = Value (read val)
+buildAST (ops, vals) = buildExprList ops (mapValues vals)
